@@ -1,0 +1,10 @@
+FROM maven:3.6.3-jdk-8-slim
+
+COPY src /opt/accwe-hospital/src
+COPY pom.xml /opt/accwe-hospital
+
+WORKDIR /opt/accwe-hospital
+
+RUN mvn clean install
+
+CMD mvn spring-boot:run
