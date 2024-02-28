@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  db:
+    image: accwe-hospital-mysql:v1
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_LOCAL_PORT}:${MYSQL_DOCKER_PORT}"
+    volumes:
+      - db:/var/lib/mysql
+  accwe-hospital:
+    image: accwe-hospital:v1
+    depends_on:
+      - db
+    restart: on-failure
+    ports:
+      - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://db:${MYSQL_DOCKER_PORT}/accwe-hospital",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "${MYSQL_PASSWORD}",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - ./src:/opt/accwe-hospital/src
+volumes:
+  db:
