@@ -24,3 +24,30 @@ In `Dockerfile.mysql` a MySql image is builded, the database to be created at st
 
 A `docker-compose.yml` file has also been created where a network is established to raise the containers built through the Dockerfile and the relevant configurations, environment variables, etc. to run properly, creating volumes so that the data is maintained between executions.
 In order to use this file, we need to create an `.env` file where the environment variables needed to run the file will be set. An `example.env` file has been generated where these variables appear in order to facilitate the configuration. The example configuration will be sufficient for the `.env` file. The `.env` file is not in the repository as it could contain sensitive information in the future, in the hypothetical case of scaling the application.
+
+## Optional step. UML diagram.
+Generated through a `.puml`file with `PlantUML`
+
+```
+                                ,-----------------------.                               
+                                |Appointment            |                               
+                                |-----------------------|                               
+                                |- id: bigint           |                               
+                                |- finishes_at: datetime|                               
+                                |- starts_at: datetime  |                               
+                                |- doctor_id: bigint    |                               
+                                |- patient_id: bigint   |                               
+                                |- room_id: varchar(255)|                               
+                                `-----------------------'                               
+          --------------------------------- |--------------------------                
+          | doctor_id                       | patient_id              |                 
+,--------------------------.  ,--------------------------.            |                 
+|Doctors                   |  |Patient                   |            | room_name                 
+|--------------------------|  |--------------------------|   ,-------------------------.
+|- id: bigint              |  |- id: bigint              |   |Room                     |
+|- age: int                |  |- age: int                |   |-------------------------|
+|- email: varchar(255)     |  |- email: varchar(255)     |   |- room_name: varchar(255)|
+|- first_name: varchar(255)|  |- first_name: varchar(255)|   `-------------------------'
+|- last_name: varchar(255) |  |- last_name: varchar(255) |                              
+`--------------------------'  `--------------------------'                              
+```

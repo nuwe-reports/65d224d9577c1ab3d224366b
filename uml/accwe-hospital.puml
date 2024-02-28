@@ -1,0 +1,34 @@
+@startuml
+class Appointment {
+  - id: bigint
+  - finishes_at: datetime
+  - starts_at: datetime
+  - doctor_id: bigint
+  - patient_id: bigint
+  - room_name: varchar(255)
+}
+
+class Doctors {
+  - id: bigint
+  - age: int
+  - email: varchar(255)
+  - first_name: varchar(255)
+  - last_name: varchar(255)
+}
+
+class Patient {
+  - id: bigint
+  - age: int
+  - email: varchar(255)
+  - first_name: varchar(255)
+  - last_name: varchar(255)
+}
+
+class Room {
+  - room_name: varchar(255)
+}
+
+Appointment --> Doctors: doctor_id
+Appointment --> Patient: patient_id
+Appointment --> Room: room_name
+@enduml
