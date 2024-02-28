@@ -2,6 +2,10 @@
 
 This project solves the Backend programming challenge with Java and Spring Boot to create a microservice for a hospital.
 
+## Authors
+
+- [@Franmb93](https://www.github.com/franmb93)
+
 ## Coding of the POST method of appointment for the creation of a new appointment.
 It has been solved taking into account the relevant validations for the data and that two appointments can overlap in time and in the same room through the `Appointment` model function, `overlaps(Appointment appointment)`.
 
@@ -51,3 +55,4 @@ Generated through a `.puml`file with `PlantUML`
 |- last_name: varchar(255) |  |- last_name: varchar(255) |                              
 `--------------------------'  `--------------------------'                              
 ```
+
