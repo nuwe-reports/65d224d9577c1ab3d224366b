@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-8-slim
+FROM maven:3.8.6-openjdk-11-slim
 
 COPY src /opt/accwe-hospital/src
 COPY pom.xml /opt/accwe-hospital
